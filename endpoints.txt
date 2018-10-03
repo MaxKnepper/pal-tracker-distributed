@@ -28,3 +28,10 @@ cf create-service p-mysql 100mb tracker-backlog-database
 cf create-service p-mysql 100mb tracker-registration-database
 cf create-service p-mysql 100mb tracker-timesheets-database
 
+
+cd ~/workspace/assignment-submission
+./gradlew cloudNativeDeveloperDistributedSystemDeployment \
+    -PregistrationServerUrl=https://registration-pal-sputti.apps.evans.pal.pivotal.io \
+    -PbacklogServerUrl=https://backlog-pal-sputti.apps.evans.pal.pivotal.io \
+    -PallocationsServerUrl=https://allocations-pal-sputti.apps.evans.pal.pivotal.io \
+    -PtimesheetsServerUrl=https://timesheets-pal-sputti.apps.evans.pal.pivotal.io
