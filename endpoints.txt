@@ -17,3 +17,10 @@ curl -i localhost:8082/stories?projectId=${PROJECT_ID}
 
 curl -i -XPOST -H"Content-Type: application/json" localhost:8084/time-entries/ -d"{\"projectId\": \"1\", \"userId\": \"1\", \"date\": \"2015-05-17\", \"hours\": 6}"
 curl -i localhost:8084/time-entries?userId=${USER_ID}
+
+
+cf create-service p-mysql 100mb tracker-allocations-database
+cf create-service p-mysql 100mb tracker-backlog-database
+cf create-service p-mysql 100mb tracker-registration-database
+cf create-service p-mysql 100mb tracker-timesheets-database
+
