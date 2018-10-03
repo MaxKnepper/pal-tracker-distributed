@@ -35,3 +35,23 @@ cd ~/workspace/assignment-submission
     -PbacklogServerUrl=https://backlog-pal-sputti.apps.evans.pal.pivotal.io \
     -PallocationsServerUrl=https://allocations-pal-sputti.apps.evans.pal.pivotal.io \
     -PtimesheetsServerUrl=https://timesheets-pal-sputti.apps.evans.pal.pivotal.io
+
+
+ curl -i -XPOST -H"Content-Type: application/json" registration-pal-sputti.apps.evans.pal.pivotal.io/registration -d'{"name": "Pete"}'
+ curl -i registration-pal-sputti.apps.evans.pal.pivotal.io/users/4
+
+
+ curl -i registration-pal-sputti.apps.evans.pal.pivotal.io/accounts?ownerId=1
+
+ curl -i -XPOST -H"Content-Type: application/json" registration-pal-sputti.apps.evans.pal.pivotal.io/projects -d"{\"name\": \"Basket Weaving\", \"accountId\": \"1\"}"
+ curl -i registration-pal-sputti.apps.evans.pal.pivotal.io/projects?accountId=1
+
+
+ curl -i -XPOST -H"Content-Type: application/json" allocations-pal-sputti.apps.evans.pal.pivotal.io/allocations -d"{\"projectId\": \"1\", \"userId\": \"1\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+ curl -i allocations-pal-sputti.apps.evans.pal.pivotal.io/allocations?projectId=1
+
+ curl -i -XPOST -H"Content-Type: application/json" backlog-pal-sputti.apps.evans.pal.pivotal.io/stories -d"{\"projectId\":  \"1\", \"name\": \"Find some reeds\"}"
+  curl -i backlog-pal-sputti.apps.evans.pal.pivotal.io/stories?projectId=1
+
+ curl -i -XPOST -H"Content-Type: application/json" timesheets-pal-sputti.apps.evans.pal.pivotal.io/time-entries/ -d"{\"projectId\": \"1\", \"userId\": \"1\", \"date\": \"2015-05-17\", \"hours\": 6}"
+ curl -i timesheets-pal-sputti.apps.evans.pal.pivotal.io/time-entries?userId=1
