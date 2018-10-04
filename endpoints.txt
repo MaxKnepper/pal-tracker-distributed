@@ -1,4 +1,4 @@
-curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "Pete"}'
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "Pete3"}'
 curl -i localhost:8083/users/${USER_ID}
 curl -i localhost:8083/users/1
 
@@ -6,19 +6,19 @@ curl -i localhost:8083/users/1
 curl -i localhost:8083/accounts?ownerId=${USER_ID}
 curl -i localhost:8083/accounts?ownerId=1
 
-curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Basket Weaving\", \"accountId\": ${ACCOUNT_ID}}"
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Basket Weaving12\", \"accountId\": \"3\"}"
 curl -i localhost:8083/projects?accountId=1
 
 
 curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations -d"{\"projectId\": ${PROJECT_ID}, \"userId\": ${USER_ID}, \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
-curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations -d"{\"projectId\": \"1\", \"userId\": \"1\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations -d"{\"projectId\": \"4\", \"userId\": \"4\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
 curl -i localhost:8081/allocations?projectId=${PROJECT_ID}
 
-curl -i -XPOST -H"Content-Type: application/json" localhost:8082/stories -d"{\"projectId\":  \"1\", \"name\": \"Find some reeds\"}"
+curl -i -XPOST -H"Content-Type: application/json" localhost:8082/stories -d"{\"projectId\":  \"3\", \"name\": \"Find some reeds2\"}"
 curl -i localhost:8082/stories?projectId=${PROJECT_ID}
 curl -i localhost:8082/stories?projectId=1
 
-curl -i -XPOST -H"Content-Type: application/json" localhost:8084/time-entries/ -d"{\"projectId\": \"1\", \"userId\": \"1\", \"date\": \"2015-05-17\", \"hours\": 6}"
+curl -i -XPOST -H"Content-Type: application/json" localhost:8084/time-entries/ -d"{\"projectId\": \"3\", \"userId\": \"3\", \"date\": \"2015-05-17\", \"hours\": 6}"
 curl -i localhost:8084/time-entries?userId=${USER_ID}
 curl -i localhost:8084/time-entries?userId=1
 
@@ -30,7 +30,7 @@ cf create-service p-mysql 100mb tracker-timesheets-database
 
 
 cd ~/workspace/assignment-submission
-./gradlew cloudNativeDeveloperDistributedSystemDeployment \
+./gradlew cloudNativeDeveloperDistributedSystemWithServiceDiscovery \
     -PregistrationServerUrl=https://registration-pal-sputti.apps.evans.pal.pivotal.io \
     -PbacklogServerUrl=https://backlog-pal-sputti.apps.evans.pal.pivotal.io \
     -PallocationsServerUrl=https://allocations-pal-sputti.apps.evans.pal.pivotal.io \
@@ -55,3 +55,11 @@ cd ~/workspace/assignment-submission
 
  curl -i -XPOST -H"Content-Type: application/json" timesheets-pal-sputti.apps.evans.pal.pivotal.io/time-entries/ -d"{\"projectId\": \"1\", \"userId\": \"1\", \"date\": \"2015-05-17\", \"hours\": 6}"
  curl -i timesheets-pal-sputti.apps.evans.pal.pivotal.io/time-entries?userId=1
+
+
+
+
+ > :applications:allocations-server:bootRun
+ > :applications:timesheets-server:bootRun
+ > :applications:backlog-server:bootRun
+ > :applications:registration-server:bootRun
