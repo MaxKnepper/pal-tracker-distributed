@@ -73,3 +73,6 @@ curl localhost:8083 -H"Authorization: Bearer ac22c726-7652-4670-b63a-76881e8806f
 curl http://actuator:operations4red@localhost:8081/env
 
 
+ git config user.email "srikanth.putti@gmail.com"
+ git config  user.name "spgh"
+
