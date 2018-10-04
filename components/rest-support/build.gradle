@@ -1,4 +1,6 @@
 dependencies {
     compile "org.springframework:spring-web:$springVersion"
-    compile "org.springframework.cloud:spring-cloud-commons:$springCloudServicesVersion"
+//    compile "org.springframework.cloud:spring-cloud-commons:$springCloudServicesVersion"
+
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-commons', version: '1.3.0.RELEASE'
 }

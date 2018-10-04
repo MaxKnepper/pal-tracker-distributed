@@ -10,6 +10,8 @@ public class ProjectClient {
     public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
         this.restOperations= restOperations;
         this.registrationServerEndpoint = registrationServerEndpoint;
+
+        System.out.println("Debug statement in ProjectClient: registrationServerEndpoint"+ registrationServerEndpoint);
     }
 
     public ProjectInfo getProject(long projectId) {

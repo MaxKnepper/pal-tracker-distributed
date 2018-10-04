@@ -26,6 +26,7 @@ public class App {
         RestOperations restOperations,
         @Value("${registration.server.endpoint}") String registrationEndpoint
     ) {
+        System.out.println("Inside Allocations App: registrationEndpoint: "+ registrationEndpoint);
         return new ProjectClient(restOperations, registrationEndpoint);
     }
 }
