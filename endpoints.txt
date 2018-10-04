@@ -28,13 +28,15 @@ cf create-service p-mysql 100mb tracker-backlog-database
 cf create-service p-mysql 100mb tracker-registration-database
 cf create-service p-mysql 100mb tracker-timesheets-database
 
-
+git st
 cd ~/workspace/assignment-submission
-./gradlew cloudNativeDeveloperDistributedSystemWithServiceDiscovery \
+./gradlew cloudNativeDeveloperDistributedSystemWithSecurity \
     -PregistrationServerUrl=https://registration-pal-sputti.apps.evans.pal.pivotal.io \
     -PbacklogServerUrl=https://backlog-pal-sputti.apps.evans.pal.pivotal.io \
     -PallocationsServerUrl=https://allocations-pal-sputti.apps.evans.pal.pivotal.io \
-    -PtimesheetsServerUrl=https://timesheets-pal-sputti.apps.evans.pal.pivotal.io
+    -PtimesheetsServerUrl=https://timesheets-pal-sputti.apps.evans.pal.pivotal.io \
+    -PactuatorUsername=actuator \
+    -PactuatorPassword=operations4red
 
 
  curl -i -XPOST -H"Content-Type: application/json" registration-pal-sputti.apps.evans.pal.pivotal.io/registration -d'{"name": "Pete"}'
@@ -63,3 +65,11 @@ cd ~/workspace/assignment-submission
  > :applications:timesheets-server:bootRun
  > :applications:backlog-server:bootRun
  > :applications:registration-server:bootRun
+
+
+-----OAuth------
+curl 'http://localhost:8999/oauth/token' -i -u 'tracker-client:supersecret' -X POST -H 'Accept: application/json' -H 'Content-Type: application/x-www-form-urlencoded' -d 'grant_type=client_credentials&response_type=token&token_format=opaque'
+curl localhost:8083 -H"Authorization: Bearer ac22c726-7652-4670-b63a-76881e8806fe"
+curl http://actuator:operations4red@localhost:8081/env
+
+
